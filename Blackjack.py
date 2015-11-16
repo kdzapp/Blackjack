@@ -116,7 +116,12 @@ def aiTotal(card1, card2):
         
 def runGame():
 
-    bet = int(raw_input("\nPlace Bet ($): "))
+    while True:
+        bet = int(raw_input("\nPlace Bet ($): "))
+        if bet > calcMoney(0, True):
+            print "\nYou don't have that much money"
+        else:
+            break
     
     print "You've bet", bet, "$"
     print "\nDealing..."
@@ -226,6 +231,9 @@ while True:
     #Menu Conditional
     if userInput == 1:
         initalCash = runGame()
+        if initalCash <= 0:
+            print "You've lost all your money, you're broke...\n"
+            break
         menu()
     elif userInput == 2:
         settings()
@@ -245,7 +253,7 @@ while True:
                 print "\nSorry, that's not a settings option..."
             
     elif userInput == 3:
-        ender()
         break
     else:
         print "\nSorry, that's not a menu option..."
+ender()
